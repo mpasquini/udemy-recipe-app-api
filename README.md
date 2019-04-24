@@ -22,8 +22,19 @@ create .flake8 conf file under /app
 # create new core django app  
 docker-compose run app sh -c "python manage.py startapp core"
 
+## custom user
+create test to test user add with mail
 
+create UserManager from BaseUserManager to create customized user
 
+create User model that use UserManager ans set email as usernamefield
+update settings.py to set AUTH_USER_MODEL = 'core.User'
+
+make migrations
+docker-compose run app sh -c "python manage.py makemigrations core" 
+
+test it:
+docker-compose run app sh -c "python manage.py test"
 
 
 
