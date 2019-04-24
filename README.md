@@ -19,6 +19,9 @@ and add flake8 to requirements.txt
 create .flake8 conf file under /app
 
 
+# create new core django app  
+docker-compose run app sh -c "python manage.py startapp core"
+
 
 
 
