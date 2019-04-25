@@ -73,3 +73,14 @@ added:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       
+
+## first run, add wait for db command
+-> app/core/management/commands, look for Django doc 
+-> docker-compose up
+note: cannot see full log output after migrations info message, 
+app seems to work..., really ...???
+
+
+## add superuser:
+docker-compose run app sh -c "python manage.py createsuperuser"
+--> 127.0.0.1:8000/admin to login 
