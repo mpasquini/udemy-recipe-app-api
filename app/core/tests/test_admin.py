@@ -19,7 +19,6 @@ class AdminSiteTest(TestCase):
             password='321',
             name='test User full name'
         )
-        self.client.force_login(self.user)
 
     def test_users_listed(self):
         """Test that users are listed on user page"""
