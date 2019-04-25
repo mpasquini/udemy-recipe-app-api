@@ -53,3 +53,23 @@ added "fieldsets" in admin.py
 -> test_create_user_page
 can create an user page?
 added "add_fieldsets" in admin.py
+
+# adding postgres
+## docker compose
+added: 
+    envirounment:
+      - DB_HOST=db
+      - DB_NAME=app
+      - DB_USER=postgres
+      - DB_PASS=password
+      #  - PGPASSFILE=.pgpass
+    depends_on:
+      - db
+
+  db:
+    image: postgres:10-alpine
+    enviroument:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      
