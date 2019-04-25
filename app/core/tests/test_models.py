@@ -1,6 +1,7 @@
+# docker-compose run app sh -c "python manage.py test && flake8"
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from django.contrib.auth import get_user_model
 
 class ModelTests(TestCase):
 
@@ -15,3 +16,29 @@ class ModelTests(TestCase):
 
         self.assertEqual(user.email, email)
         self.assertTrue(user.check_password(password))
+
+    def test_new_user_email_normalized(self):
+        """test the email for a new user is normalized"""
+        email = 'test@GMAIL.COM'
+        user = get_user_model().objects.create_user(
+            email=email,
+            password='password'
+        )
+        self.assertEqual(user.email, email.lower())
+
+    def test_new_user_invalid_email(self):
+        """test creating new user with no email raises error"""
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user(
+                email=None, password='password')
+            get_user_model().objects.create_user(
+                email='', password='password')
+
+    def test_create_new_superuser(self):
+        """test creating a new superuser"""
+        user = get_user_model().objects.create_superuser(
+            email='admin@gmail.com',
+            password='123'
+        )
+        self.assertEqual(user.is_superuser, True)
+        self.assertEqual(user.is_staff, True)

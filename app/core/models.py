@@ -7,9 +7,20 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         """create and saves a new user"""
-        user = self.model(email=email, **extra_fields)
+        if not email or email == '':
+            raise ValueError("user must have an email")
+        user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
-        user.save(using=self.db)
+        user.save(using=self._db)
+
+        return user
+
+    def create_superuser(self, email, password=None):
+        """Create and saves a new superuser"""
+        user = self.create_user(email=email, password=password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
 
         return user
 
