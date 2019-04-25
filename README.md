@@ -46,5 +46,8 @@ create tests test_admin.py
 note: check django.test.Client documentation
 note: check django.urls.reverse doc
 
+testing user page change: 
+-> test_user_change_page 
+added fieldsets in admin.py
 
 
