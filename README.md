@@ -48,6 +48,8 @@ note: check django.urls.reverse doc
 
 testing user page change: 
 -> test_user_change_page 
-added fieldsets in admin.py
+added "fieldsets" in admin.py
 
-
+-> test_create_user_page
+can create an user page?
+added "add_fieldsets" in admin.py
