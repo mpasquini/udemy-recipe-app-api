@@ -84,3 +84,6 @@ app seems to work..., really ...???
 ## add superuser:
 docker-compose run app sh -c "python manage.py createsuperuser"
 --> 127.0.0.1:8000/admin to login 
+
+## 
+docker-compose run --rm app sh -c "python manage.py startapp user"
