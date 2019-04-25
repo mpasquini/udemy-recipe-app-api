@@ -1,5 +1,8 @@
-# udemy-recipe-app-api
+# udemy-recipe-app-api [![Build Status](https://travis-ci.org/mpasquini/udemy-recipe-app-api.svg?branch=development)](https://travis-ci.org/mpasquini/udemy-recipe-app-api)
 Udemy course, recipe-app-api source code
+
+complete solution: 
+https://github.com/LondonAppDeveloper/recipe-app-api/tree/master/app/core
 
 
 
@@ -34,9 +37,14 @@ make migrations
 docker-compose run app sh -c "python manage.py makemigrations core" 
 
 test it:
-docker-compose run app sh -c "python manage.py test"
+docker-compose run app sh -c "python manage.py test && flake8"
 
 
+
+## custom admin
+create tests test_admin.py
+note: check django.test.Client documentation
+note: check django.urls.reverse doc
 
 
 
