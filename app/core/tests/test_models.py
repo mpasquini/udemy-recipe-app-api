@@ -17,6 +17,23 @@ class ModelTests(TestCase):
         self.assertEqual(user.email, email)
         self.assertTrue(user.check_password(password))
 
+    def test_created_user_is_active(self):
+        """course, lecture 30 getting redirect error
+            AssertionError: 302 != 200 : Couldn't retrieve content:
+            Response code was 302 (expected 200)
+
+        checked Q&A:
+        AM I got a AssertionError at test_admin.py file line 27
+        --> do not resolve this case
+        """
+        email = 'test@gmail.com'
+        password = 'Testpass123'
+        user = get_user_model().objects.create_user(
+            email=email,
+            password=password
+        )
+        self.assertTrue(user.is_active)
+
     def test_new_user_email_normalized(self):
         """test the email for a new user is normalized"""
         email = 'test@GMAIL.COM'
