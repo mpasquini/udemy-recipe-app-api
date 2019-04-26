@@ -18,7 +18,6 @@ services:
       - DB_USER=postgres
       - DB_PASS=password
       - DB_PORT=5432
-      #  - PGPASSFILE=.pgpass
     depends_on:
       - db
 

@@ -95,3 +95,7 @@ using path and include from django.urls, the requests are passed to proper app
 
 docker-compose run --rm app sh -c "python manage.py test && flake8"
 
+
+## temporary token for furure api requests
+
+
