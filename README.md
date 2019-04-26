@@ -85,5 +85,13 @@ app seems to work..., really ...???
 docker-compose run app sh -c "python manage.py createsuperuser"
 --> 127.0.0.1:8000/admin to login 
 
-## 
+## create user rest api
+introducing rest_framework. 
+data are serialized in json, read and write
+user is a separate app
 docker-compose run --rm app sh -c "python manage.py startapp user"
+
+using path and include from django.urls, the requests are passed to proper app
+
+docker-compose run --rm app sh -c "python manage.py test && flake8"
+

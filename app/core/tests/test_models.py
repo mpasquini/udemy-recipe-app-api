@@ -26,11 +26,9 @@ class ModelTests(TestCase):
         AM I got a AssertionError at test_admin.py file line 27
         --> do not resolve this case
         """
-        email = 'test@gmail.com'
-        password = 'Testpass123'
         user = get_user_model().objects.create_user(
-            email=email,
-            password=password
+            email='test@gmail.com',
+            password='Testpass123'
         )
         self.assertTrue(user.is_active)
 
