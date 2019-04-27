@@ -102,3 +102,15 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+/coverage/jquery.hotkeys.js
+/coverage/index.html
+/coverage/jquery.ba-throttle-debounce.min.js
+/coverage/keybd_open.png
+/coverage/core_tests_test_models_py.html
+/coverage/jquery.tablesorter.min.js
+/coverage/coverage_html.js
+/coverage/jquery.min.js
+/coverage/keybd_closed.png
+/coverage/style.css
+/coverage/status.json
+/coverage/jquery.isonscreen.js
