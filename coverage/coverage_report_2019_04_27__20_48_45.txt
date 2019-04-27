@@ -1,0 +1,7 @@
+Name                        Stmts   Miss Branch BrPart     Cover   Missing
+--------------------------------------------------------------------------
+core/tests/test_models.py      24      1      0      0    95.83%   49
+--------------------------------------------------------------------------
+TOTAL                         225      1      6      0    99.57%
+
+21 files skipped due to complete coverage.

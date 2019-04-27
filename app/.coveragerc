@@ -1,0 +1,14 @@
+[run]
+branch = True
+omit = manage.py
+
+
+[report]
+ignore_errors = True
+precision = 2
+skip_covered = True
+show_missing = True
+sort = Cover
+
+[html]
+directory = /coverage

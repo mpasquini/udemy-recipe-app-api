@@ -1,17 +1,24 @@
-# udemy-recipe-app-api [![Build Status](https://travis-ci.org/mpasquini/udemy-recipe-app-api.svg?branch=development)](https://travis-ci.org/mpasquini/udemy-recipe-app-api)
-Udemy course, recipe-app-api source code
+# udemy-recipe-app-api [![Build Status](https://travis-ci.org/mpasquini/udemy-recipe-app-api.svg?branch=development)](https://travis-ci.org/mpasquini/udemy-recipe-app-api)  
 
-complete solution: 
-https://github.com/LondonAppDeveloper/recipe-app-api/tree/master/app/core
+[Coverage Report Status](.coverage/index.html)
+
+Udemy course, recipe-app-api source code  
+
+complete solution:   
+https://github.com/LondonAppDeveloper/recipe-app-api/tree/master/app/core  
 
 
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose  
 
 
-docker build .
-docker-compose build
-docker-compose run app sh -c "django-admin.py startproject app ."
+docker build .  
+docker-compose build  
+docker-compose run -rm app sh -c "django-admin.py startproject app ."  
+
+note  
+```bash    docker system prune ```  
+will free some space  
 
 # configure travis-ci
 https://travis-ci.org
@@ -74,26 +81,32 @@ added:
       - POSTGRES_PASSWORD=password
       
 
-## first run, add wait for db command
--> app/core/management/commands, look for Django doc 
--> docker-compose up
-note: cannot see full log output after migrations info message, 
-app seems to work..., really ...???
+## first run, add wait for db command  
+-> app/core/management/commands, look for Django doc   
+-> docker-compose up  
+note: cannot see full log output after migrations info message,   
+app seems to work..., really ...???  
 
 
-## add superuser:
-docker-compose run app sh -c "python manage.py createsuperuser"
---> 127.0.0.1:8000/admin to login 
+## add superuser:  
+docker-compose run app sh -c "python manage.py createsuperuser"  
+--> 127.0.0.1:8000/admin to login   
 
 ## create user rest api
-introducing rest_framework. 
-data are serialized in json, read and write
-user is a separate app
-docker-compose run --rm app sh -c "python manage.py startapp user"
+introducing rest_framework.   
+data are serialized in json, read and write  
+user is a separate app  
+docker-compose run --rm app sh -c "python manage.py startapp user"  
 
-using path and include from django.urls, the requests are passed to proper app
+using path and include from django.urls, the requests are passed to proper app  
 
-docker-compose run --rm app sh -c "python manage.py test && flake8"
+docker-compose run --rm app sh -c "python manage.py test && flake8"  
+
+docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report > /coverage/coverage_report_`date '+%Y_%m_%d__%H_%M_%S'`.txt && coverage html "  
+
+fails html:
+docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage html > /coverage/coverage_report_`date '+%Y_%m_%d__%H_%M_%S'`.html"  
+docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report -m && coverage report html "  
 
 
 ## temporary token for furure api requests
