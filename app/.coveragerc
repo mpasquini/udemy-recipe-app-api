@@ -1,14 +1,19 @@
 [run]
 branch = True
-omit = manage.py
-
+source = ./*
 
 [report]
+exclude_lines =
+    if self.debug:
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
 ignore_errors = True
 precision = 2
 skip_covered = True
 show_missing = True
 sort = Cover
+omit = manage.py
 
 [html]
 directory = /coverage

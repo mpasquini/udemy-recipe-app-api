@@ -1,24 +1,39 @@
 # udemy-recipe-app-api [![Build Status](https://travis-ci.org/mpasquini/udemy-recipe-app-api.svg?branch=development)](https://travis-ci.org/mpasquini/udemy-recipe-app-api)  
+[link to tavis-ci](https://travis-ci.org/mpasquini/udemy-recipe-app-api)  
 
-[Coverage Report Status](.coverage/index.html)
+Coverage Report Status:  
+```coverage
+Name                        Stmts   Miss Branch BrPart     Cover   Missing  
+--------------------------------------------------------------------------
+core/tests/test_models.py      24      1      0      0    95.83%   49
+user/serializers.py            29      0      4      1    96.97%   28->32
+--------------------------------------------------------------------------
+TOTAL                         261      1      8      1    99.26%
+  
+21 files skipped due to complete coverage.  
+```
+
+
 
 Udemy course, recipe-app-api source code  
 
-complete solution:   
-https://github.com/LondonAppDeveloper/recipe-app-api/tree/master/app/core  
+[complete solution on LondonAppDeveloper](https://github.com/LondonAppDeveloper/recipe-app-api/tree/master/app/core)  
 
+docker-compose 1.24.0 version:  
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose   
+```  
 
-
-sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose  
-
-
+```
 docker build .  
 docker-compose build  
 docker-compose run -rm app sh -c "django-admin.py startproject app ."  
+```
 
-note  
-```bash    docker system prune ```  
-will free some space  
+sometime is useful to free some docker unused space 
+```bash    
+docker system prune 
+```  
 
 # configure travis-ci
 https://travis-ci.org
@@ -30,22 +45,26 @@ create .flake8 conf file under /app
 
 
 # create new core django app  
+```
 docker-compose run app sh -c "python manage.py startapp core"
+```
 
 ## custom user
-create test to test user add with mail
+create test to test user add with mail  
 
-create UserManager from BaseUserManager to create customized user
+create UserManager from BaseUserManager to create customized user  
 
-create User model that use UserManager ans set email as usernamefield
-update settings.py to set AUTH_USER_MODEL = 'core.User'
+create User model that use UserManager ans set email as usernamefield  
+update settings.py to set AUTH_USER_MODEL = 'core.User'  
 
-make migrations
-docker-compose run app sh -c "python manage.py makemigrations core" 
-
+make migrations:
+```
+docker-compose run app sh -c "python manage.py makemigrations core"   
+```
 test it:
-docker-compose run app sh -c "python manage.py test && flake8"
-
+```
+docker-compose run app sh -c "python manage.py test && flake8"  
+```
 
 
 ## custom admin
@@ -63,6 +82,7 @@ added "add_fieldsets" in admin.py
 
 # adding postgres
 ## docker compose
+```docker-compose
 added: 
     envirounment:
       - DB_HOST=db
@@ -79,36 +99,46 @@ added:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      
+```      
 
 ## first run, add wait for db command  
 -> app/core/management/commands, look for Django doc   
--> docker-compose up  
-note: cannot see full log output after migrations info message,   
+```
+docker-compose up    
+```
+note: cannot see full log output after migrations info message,     
 app seems to work..., really ...???  
 
 
 ## add superuser:  
-docker-compose run app sh -c "python manage.py createsuperuser"  
+```bash
+docker-compose run app sh -c "python manage.py createsuperuser"    
+```
 --> 127.0.0.1:8000/admin to login   
 
 ## create user rest api
 introducing rest_framework.   
 data are serialized in json, read and write  
 user is a separate app  
-docker-compose run --rm app sh -c "python manage.py startapp user"  
 
+```
+docker-compose run --rm app sh -c "python manage.py startapp user"    
+```
 using path and include from django.urls, the requests are passed to proper app  
 
+```
 docker-compose run --rm app sh -c "python manage.py test && flake8"  
 
-docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report > /coverage/coverage_report_`date '+%Y_%m_%d__%H_%M_%S'`.txt && coverage html "  
+docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report > /coverage/coverage_report.txt && coverage html "  
+```
 
-fails html:
-docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage html > /coverage/coverage_report_`date '+%Y_%m_%d__%H_%M_%S'`.html"  
-docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report -m && coverage report html "  
+fail coverage html command:
+```
+docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage html > /coverage/coverage_report_`date '+%Y_%m_%d__%H_%M_%S'`.html"    
+docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report -m && coverage report html "    
+```
 
 
-## temporary token for furure api requests
+## temporary token for future api requests
 
 

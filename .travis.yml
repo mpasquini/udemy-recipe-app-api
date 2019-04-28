@@ -1,13 +1,25 @@
 language: python
 python:
   - "3.6"
+env:
+  - DOCKER_COMPOSE_VERSION=1.24.0
+  #- CODECOV_TOKEN=<token>#IF ONLY YOU HAVE A PRIVATE REPOSITORY
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 services:
   - docker
 
-before_scripts: pip install docker-compose
+before_scripts: pip install docker-compose codecov
 
 script:
   - docker-compose run app sh -c "python manage.py test && flake8"
 # fail with : PermissionError: [Errno 13] Permission denied: '/app/.coverage'
 #  - docker-compose run app sh -c "coverage run manage.py test && flake8 && coverage report"
+
+after_success:
+  - codecov
