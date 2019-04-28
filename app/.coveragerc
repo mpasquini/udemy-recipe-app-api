@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = ./*
+source = .
 
 [report]
 exclude_lines =
@@ -13,7 +13,14 @@ precision = 2
 skip_covered = True
 show_missing = True
 sort = Cover
-omit = manage.py
+omit =
+    manage.py
+    */tests/*
+    app/wsgi.py
+    */apps.py
 
 [html]
 directory = /coverage
+
+[xml]
+output = /coverage/coverage.xml

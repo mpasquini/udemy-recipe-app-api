@@ -3,16 +3,14 @@
 
 Coverage Report Status:  
 ```coverage
-Name                        Stmts   Miss Branch BrPart     Cover   Missing  
---------------------------------------------------------------------------
-core/tests/test_models.py      24      1      0      0    95.83%   49
-user/serializers.py            29      0      4      1    96.97%   28->32
---------------------------------------------------------------------------
-TOTAL                         261      1      8      1    99.26%
-  
-21 files skipped due to complete coverage.  
-```
+Name                  Stmts   Miss Branch BrPart     Cover   Missing
+--------------------------------------------------------------------
+user/serializers.py      29      0      4      1    96.97%   28->32
+--------------------------------------------------------------------
+TOTAL                   123      0      8      1    99.24%
 
+15 files skipped due to complete coverage.
+```
 
 
 Udemy course, recipe-app-api source code  
@@ -132,11 +130,6 @@ docker-compose run --rm app sh -c "python manage.py test && flake8"
 docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report > /coverage/coverage_report.txt && coverage html "  
 ```
 
-fail coverage html command:
-```
-docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage html > /coverage/coverage_report_`date '+%Y_%m_%d__%H_%M_%S'`.html"    
-docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && coverage report -m && coverage report html "    
-```
 
 
 ## temporary token for future api requests
