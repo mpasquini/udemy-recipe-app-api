@@ -52,7 +52,7 @@ class Tag(models.Model):
 
 
 class Ingredient(models.Model):
-    """Ingredient to be used in a recipie"""
+    """Ingredient to be used in a recipe"""
     name = models.CharField(max_length=255)
     # refer to auth user model, best practices:
     user = models.ForeignKey(
