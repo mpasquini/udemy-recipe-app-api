@@ -14,6 +14,7 @@ pipeline {
                   sudo mv docker-compose /usr/local/bin
                 """
             }
+        }
 
         stage('before_scripts') {
             steps {
@@ -21,7 +22,7 @@ pipeline {
             }
         }
 
-        stage('test')
+        stage('test'){
             steps {
                 sh """
                 docker-compose run app sh -c 'python manage.py test && flake8'
