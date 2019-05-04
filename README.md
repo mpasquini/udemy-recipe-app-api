@@ -135,3 +135,21 @@ docker-compose run --rm app sh -c "coverage run manage.py test && flake8 && cove
 ## temporary token for future api requests
 
 
+## create used management
+
+
+## recepie  app
+
+```bash
+docker-compose run --rm app sh -c "python manage.py startapp recipe"
+```
+
+
+##Tags - lecture49
+add Tag model test amd model
+```
+docker-compose run app sh -c "python manage.py makemigrations"   
+```
+##Tags - lecture50
+add tag test
+

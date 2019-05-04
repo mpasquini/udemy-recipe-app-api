@@ -55,5 +55,14 @@ class ModelTests(TestCase):
             email='admin@gmail.com',
             password='123'
         )
-        self.assertEqual(user.is_superuser, True)
-        self.assertEqual(user.is_staff, True)
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
+
+    def test_tag_str(self):
+        """Test the tag string representation"""
+        tag = models.Tag.objects.create(
+            user=sample_user(),
+            name='Vegan'
+        )
+        self.assertEqual(str(tag), tag.name)
