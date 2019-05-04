@@ -153,3 +153,15 @@ docker-compose run app sh -c "python manage.py makemigrations"
 ##Tags - lecture50
 add tag test
 
+##Tags - lecture51
+add tag Selializer and create
+insert, delele, update are inherithed by mixin class, 
+oveloaded for the perform_create function only to make sure the tag is related to the authenticated user
+
+## Ingredients - Lecture 53
+add Ingredients model test amd model, same as Tag
+```
+docker-compose run app sh -c "python manage.py makemigrations core"    
+```
+
+
