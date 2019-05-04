@@ -1,5 +1,5 @@
 pipeline {
-    agent jenkins-docker-109
+    agent 'jenkins-docker-109'
     stages {
 
         stage('before_install') {
