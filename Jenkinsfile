@@ -18,7 +18,9 @@ pipeline {
 
         stage('before_scripts') {
             steps {
+                sh """
                 pip install docker-compose
+                """
             }
         }
 
