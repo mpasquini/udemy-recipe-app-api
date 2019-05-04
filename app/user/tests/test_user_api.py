@@ -1,8 +1,9 @@
-from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.contrib.auth import get_user_model
 from django.urls import reverse
-from rest_framework import status
+
 from rest_framework.test import APIClient
+from rest_framework import status
 
 CREATE_USER_URL = reverse('user:create')
 # the post req to create the user token:
@@ -47,10 +48,11 @@ class PublicUserApiTests(TestCase):
         create_user(**payload)
 
         res = self.client.post(CREATE_USER_URL, payload)
+
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_password_too_short(self):
-        """"Test the password must be more than 5 characters"""
+        """Test that the password must be more than 5 characters"""
         payload = {
             'email': 'pippo@askalabakara.com',
             'password': 'x',
@@ -64,7 +66,7 @@ class PublicUserApiTests(TestCase):
         ).exists()
         self.assertFalse(user_exists)
 
-    def test_create_create_token_for_user(self):
+    def test_create_token_for_user(self):
         """Test that a token is created for the user"""
         payload = {
             'email': 'pippo@askalabakara.com',
@@ -76,8 +78,8 @@ class PublicUserApiTests(TestCase):
         self.assertIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-    def test_create_create_token_invalid_creadential(self):
-        """Test that token is NOT if invalid credential is given"""
+    def test_create_token_invalid_credentials(self):
+        """Test that token is not created if invalid credentials are given"""
         create_user(email='pippo@askalabakara.com', password='secretpass')
         payload = {
             'email': 'pippo@askalabakara.com',
@@ -89,7 +91,7 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_create_token_no_user(self):
-        """"Test that token is not created if used doesn't exists"""
+        """Test that token is not created if user doesn't exist"""
         payload = {
             'email': 'pippo@askalabakara.com',
             'password': 'secretpass',
@@ -108,14 +110,14 @@ class PublicUserApiTests(TestCase):
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_retrievev_user_unauthorized(self):
+    def test_retrieve_user_unauthorized(self):
         """Test that authentication is required for users"""
         res = self.client.get(ME_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class PivateUserApiTests(TestCase):
+class PrivateUserApiTests(TestCase):
     """Test API requests that require authentication"""
 
     def setUp(self):
