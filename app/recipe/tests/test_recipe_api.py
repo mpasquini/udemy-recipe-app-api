@@ -1,14 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-
 from rest_framework import status
 from rest_framework.test import APIClient
 
 from core.models import Recipe
-
 from recipe.serializers import RecipeSerializer
-
 
 RECIPIES_URL = reverse('recipe:recipe-list')
 
@@ -79,5 +76,3 @@ class PrivateRecipeApiTest(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(len(res.data), 1)
         self.assertEqual(res.data, serializer.data)
-
-
