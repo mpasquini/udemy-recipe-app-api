@@ -314,7 +314,7 @@ Quiz 4: Mocking
 
 #####58 - Add recipe model 
 
-    Django ManyToManyField
+  [Django ManyToManyField](https://docs.djangoproject.com/en/2.1/ref/models/fields/#django.db.models.ManyToManyField)  
   CODE: test_models.py    
   CODE: models.py    
   CODE: admin.py    
@@ -325,7 +325,7 @@ Quiz 4: Mocking
 
 #####60 - Implement feature for listing recipes 
 
-    Django REST Framework PrimaryKeyRelatedField
+  [Django REST Framework PrimaryKeyRelatedField](https://www.django-rest-framework.org/api-guide/relations/#primarykeyrelatedfield)  
   CODE: serializers.py    
   CODE: views.py    
   CODE: urls.py    
@@ -336,7 +336,7 @@ Quiz 4: Mocking
 
 #####62 - Implement feature for retrieving recipe detail 
 
-    Django REST Framework get_serializer_class()
+  ![Django REST Framework get_serializer_class()](https://www.django-rest-framework.org/api-guide/generic-views/#get_serializer_classself)
   CODE: serializers.py    
   CODE: views.py    
 
