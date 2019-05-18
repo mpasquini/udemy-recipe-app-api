@@ -1,5 +1,6 @@
 # docker-compose run app sh -c "python manage.py test && flake8"
 from unittest.mock import patch
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
